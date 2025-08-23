@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // пізніше легко поміняти на postgresql
+  url      = env("DATABASE_URL")
+}
+
+model Hero {
+  id                 Int       @id @default(autoincrement())
+  nickname           String    @unique
+  realName           String
+  originDescription  String
+  superpowers        Superpower[]
+  catchPhrase        String
+  images             Image[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Superpower {
+  id     Int   @id @default(autoincrement())
+  name   String
+  hero   Hero  @relation(fields: [heroId], references: [id], onDelete: Cascade)
+  heroId Int
+}
+
+model Image {
+  id       Int    @id @default(autoincrement())
+  url      String // /uploads/xxx.jpg або зовнішній URL
+  hero     Hero   @relation(fields: [heroId], references: [id], onDelete: Cascade)
+  heroId   Int
+}
