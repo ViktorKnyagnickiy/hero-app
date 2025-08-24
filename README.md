@@ -1,3 +1,8 @@
+# Hello everyone 👋  
+This is my first test task for internship. I was very nervous while working on it, and I really hope you will like it.  
+
+---
+
 # 🦸 Hero App
 
 Full-stack тестовий проєкт для керування супергероями.  
@@ -21,8 +26,8 @@ HERO-APP/
 ```bash
 cd server
 npm install
-npx prisma migrate dev --name init      # створює dev.db
-npm run dev                              # http://localhost:4000
+npx prisma migrate dev --name init      
+npm run dev                              
 ```
 
 > Статичні файли (картинки) віддаються з `/uploads`.  
@@ -34,7 +39,7 @@ cd client
 npm install
 npm i @mui/material @emotion/react @emotion/styled react-router-dom
 echo VITE_API_URL=http://localhost:4000 > .env
-npm run dev                              # http://localhost:5173
+npm run dev                              
 ```
 
 ---
