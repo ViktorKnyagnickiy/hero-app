@@ -3,7 +3,9 @@ import path from "path";
 import fs from "fs";
 
 
-const uploadsDir = path.resolve(__dirname, "..", "uploads");
+
+const uploadsDir = path.resolve(__dirname, "..", "..", "uploads"); 
+
 fs.mkdirSync(uploadsDir, { recursive: true });
 
 const storage = multer.diskStorage({
