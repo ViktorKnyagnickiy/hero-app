@@ -26,6 +26,7 @@ HERO-APP/
 ```bash
 cd server
 npm install
+echo DATABASE_URL="file:./prisma/dev.db" > .env
 npx prisma migrate dev --name init    # створює БД
 npm run dev                           # запуск сервера
 ```
