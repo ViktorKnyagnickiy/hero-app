@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import * as S from "../services/hero.service";
 
-// 👉 хелпер: додає base (http://localhost:4000) до відносних url
 const absolutize = (base: string, hero: any) => ({
   ...hero,
   images: (hero.images || []).map((img: any) => ({
@@ -55,12 +54,15 @@ export const remove = async (req: Request, res: Response) => {
   res.status(204).end();
 };
 
-export const uploadImages = async (req: any, res: Response) => {
+export const uploadImages = async (req: Request, res: Response) => {
   const files = (req.files || []) as Express.Multer.File[];
-  const base = `${req.protocol}://${req.get("host")}`;
-  const urls = files.map((f) => `${base}/uploads/${f.filename}`);
+
+  const urls = files.map((f) => `/uploads/${f.filename}`);
   await S.addImages(+req.params.id, urls);
-  res.status(201).json({ urls });
+
+  
+  const base = `${req.protocol}://${req.get("host")}`;
+  res.status(201).json({ urls: urls.map((u) => `${base}${u}`) });
 };
 
 export const deleteImage = async (req: Request, res: Response) => {
