@@ -5,13 +5,13 @@ This is my first test task for internship. I was very nervous while working on i
 
 # 🦸 Hero App
 
-Full-stack тестовий проєкт для керування супергероями.  
+Full-stack застосунок для керування супергероями.  
 **Frontend:** Vite + React + TypeScript + React Router DOM + MUI  
 **Backend:** Node.js + Express + Prisma (SQLite) + Multer  
 
 ---
 
-## 📂 Структура
+## 📂 Структура проєкту
 ```
 HERO-APP/
   client/   # Frontend (Vite + React + TS + MUI)
@@ -22,25 +22,28 @@ HERO-APP/
 
 ## 🚀 Швидкий старт
 
-### 1) Backend
+### 🔧 Backend
 ```bash
 cd server
 npm install
-npx prisma migrate dev --name init      
-npm run dev                              
+npx prisma migrate dev --name init    # створює БД
+npm run dev                           # запуск сервера
 ```
 
-> Статичні файли (картинки) віддаються з `/uploads`.  
-> Контролер формує абсолютні URL (типу `http://localhost:4000/uploads/xxx.jpg`).
+- Сервер працює на `http://localhost:4000`  
+- Статичні файли доступні за `/uploads`  
+- Контролер повертає абсолютні URL (наприклад: `http://localhost:4000/uploads/xxx.jpg`)  
 
-### 2) Frontend
+### 💻 Frontend
 ```bash
 cd client
 npm install
 npm i @mui/material @emotion/react @emotion/styled react-router-dom
 echo VITE_API_URL=http://localhost:4000 > .env
-npm run dev                              
+npm run dev                           # запуск фронтенду
 ```
+
+Фронт доступний на `http://localhost:5173`.
 
 ---
 
@@ -48,7 +51,7 @@ npm run dev
 
 Базовий URL: `http://localhost:4000/api`
 
-- `GET /heroes?page=1&limit=5` – список героїв (пагінація)  
+- `GET /heroes?page=1&limit=5` – список героїв (з пагінацією)  
 - `GET /heroes/:id` – деталі героя  
 - `POST /heroes` – створення героя  
 - `PUT /heroes/:id` – оновлення героя  
@@ -56,15 +59,15 @@ npm run dev
 - `POST /heroes/:id/images` – завантаження зображень (`multipart/form-data`, поле `images`, до 10 файлів)  
 - `DELETE /heroes/:id/images/:imageId` – видалення зображення  
 
-> Статика: `GET /uploads/<filename>`
+> Статичні файли: `GET /uploads/<filename>`
 
 ---
 
-## 🧱 Технології
+## 🧱 Використані технології
 
 ### Backend
 - **Express** – REST API  
-- **Prisma** – ORM (SQLite)  
+- **Prisma (SQLite)** – ORM  
 - **Multer** – завантаження зображень у `server/uploads`  
 - **TypeScript**, **ts-node-dev** – дев-сервер  
 
@@ -77,9 +80,10 @@ npm run dev
 ---
 
 ## 🧭 Маршрути фронтенду
+
 - `/` – список героїв з пагінацією  
 - `/heroes/new` – створення героя  
-- `/heroes/:id` – деталі героя + завантаження/видалення зображень  
+- `/heroes/:id` – деталі героя + менеджмент зображень  
 - `/heroes/:id/edit` – редагування героя  
 
 ---
@@ -91,9 +95,10 @@ npm run dev
 VITE_API_URL=http://localhost:4000
 ```
 
-### `server/` (Prisma)
-- `prisma/schema.prisma` – схема БД  
-- `server/prisma/dev.db` – локальна база SQLite  
+### `server/.env` (для Prisma)
+```env
+DATABASE_URL="file:./prisma/dev.db"
+```
 
 ---
 
@@ -111,7 +116,7 @@ curl -X POST http://localhost:4000/api/heroes/1/images   -F "images=@/path/to/ph
 
 ---
 
-## 🧹 Корисні скрипти
+## 📌 Корисні скрипти
 
 ### server/package.json
 ```json
@@ -137,16 +142,17 @@ curl -X POST http://localhost:4000/api/heroes/1/images   -F "images=@/path/to/ph
 
 ---
 
-## 📌 Нотатки
+## 📝 Нотатки
+
 - При зміні схеми БД:
   ```bash
   cd server
   npx prisma migrate dev --name <change>
   ```
-- Якщо картинки не відображаються – перевір, що бекенд повертає абсолютні URL, а фронт бере `src={img.url}`.  
+- Якщо картинки не підтягуються – перевір правильність абсолютного URL з бекенду та використання `src={img.url}` на фронтенді.  
 
 ---
 
 ✅ Готово:  
-- Бекенд: [http://localhost:4000](http://localhost:4000)  
-- Фронтенд: [http://localhost:5173](http://localhost:5173)  
+- Backend: [http://localhost:4000](http://localhost:4000)  
+- Frontend: [http://localhost:5173](http://localhost:5173)  
