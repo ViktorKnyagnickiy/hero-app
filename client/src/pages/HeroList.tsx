@@ -128,9 +128,9 @@ export default function HeroList() {
                     <Typography variant="h6" noWrap>
                       {h.nickname}
                     </Typography>
-                    <Typography color="text.secondary" noWrap>
+                    {/* <Typography color="text.secondary" noWrap>
                       {h.realName}
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </CardActionArea>
               </Card>
