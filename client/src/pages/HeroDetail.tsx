@@ -1,4 +1,3 @@
-// src/pages/HeroDetail.tsx
 import { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
 import {
@@ -66,7 +65,6 @@ export default function HeroDetail() {
     return <Alert severity="warning">Not found</Alert>;
   }
 
-  // Обережно обробляємо різні форми суперсил: [{name}] або string[]
   const superpowers =
     (hero.superpowers || [])
       .map((s: any) => (typeof s === "string" ? s : s?.name))

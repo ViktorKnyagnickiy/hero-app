@@ -1,4 +1,3 @@
-// src/pages/HeroList.tsx
 import { useEffect, useMemo, useState } from "react";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import {
